@@ -1,0 +1,188 @@
+aid: reggora
+url: https://raw.githubusercontent.com/api-evangelist/reggora/refs/heads/main/apis.yml
+name: Reggora
+kind: company
+description: Reggora is a modern appraisal management platform that connects mortgage
+  lenders and appraisal vendors on a single system, automating the appraisal
+  lifecycle from order placement and product selection through payment, document
+  submission, revision review, and delivery back into the loan origination system
+  (LOS). Reggora exposes a documented Lender API and Vendor API so lenders can
+  manage 100% of their appraisal orders directly from their own LOS or proprietary
+  tech stack. All key platform functionality is available via secure REST endpoints
+  (JWT bearer token plus a per-integration API key), with sandbox and production
+  environments and webhook callbacks for loan and order events. Endpoint paths in
+  this catalog are modeled from Reggora's documented resource areas; the full
+  reference is partner-facing at api.reggora.io/docs.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Appraisal Management
+- Mortgage
+- Lending
+- Real Estate
+- Valuation
+- Loan Origination
+- LOS Integration
+- Fintech
+created: '2026-07-04'
+modified: '2026-07-04'
+specificationVersion: '0.19'
+apis:
+- aid: reggora:reggora-loans-api
+  name: Reggora Loans API
+  tags:
+  - Loans
+  - Mortgage
+  - LOS
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reggora.io/docs/
+  baseURL: https://api.reggora.io/lender
+  properties:
+  - url: https://api.reggora.io/docs/
+    type: Documentation
+  - url: https://api.reggora.io/
+    type: APIReference
+  description: Create and manage the loan records that appraisal orders are placed
+    against - sync loan data from the LOS, retrieve loan detail, update loan fields,
+    and receive a webhook when a loan is deleted. Endpoints modeled from Reggora's
+    documented lender loan resource.
+- aid: reggora:reggora-orders-api
+  name: Reggora Orders (Appraisals) API
+  tags:
+  - Orders
+  - Appraisals
+  - Status
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reggora.io/docs/
+  baseURL: https://api.reggora.io/lender
+  properties:
+  - url: https://api.reggora.io/docs/
+    type: Documentation
+  - url: https://api.reggora.io/
+    type: APIReference
+  description: Place appraisal orders against a loan, list and retrieve orders,
+    track order status through the appraisal lifecycle, and manage order-level
+    actions. Order-created and order-updated events are delivered via webhooks.
+    Endpoints modeled from Reggora's documented lender order resource.
+- aid: reggora:reggora-products-api
+  name: Reggora Products API
+  tags:
+  - Products
+  - Appraisal Products
+  - Fees
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reggora.io/docs/
+  baseURL: https://api.reggora.io/lender
+  properties:
+  - url: https://api.reggora.io/docs/
+    type: Documentation
+  - url: https://api.reggora.io/
+    type: APIReference
+  description: List the appraisal products (report types and associated fees) a
+    lender has configured so an integration can present valid product options when
+    placing an order. Endpoints modeled from Reggora's documented lender product
+    resource.
+- aid: reggora:reggora-submissions-revisions-api
+  name: Reggora Submissions & Revisions API
+  tags:
+  - Submissions
+  - Revisions
+  - Document Review
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reggora.io/docs/
+  baseURL: https://api.reggora.io/lender
+  properties:
+  - url: https://api.reggora.io/docs/
+    type: Documentation
+  - url: https://api.reggora.io/
+    type: APIReference
+  description: Retrieve appraisal report submissions on an order, request and track
+    revisions, and drive the document review workflow between lender and vendor.
+    Endpoints modeled from Reggora's documented submissions, revisions, and document
+    review resources.
+- aid: reggora:reggora-documents-evault-api
+  name: Reggora Documents (eVault) API
+  tags:
+  - Documents
+  - eVault
+  - Storage
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reggora.io/docs/
+  baseURL: https://api.reggora.io/lender
+  properties:
+  - url: https://api.reggora.io/docs/
+    type: Documentation
+  - url: https://api.reggora.io/
+    type: APIReference
+  description: Access the eVault to list, upload, and download appraisal documents
+    and supporting files associated with an order. Endpoints modeled from Reggora's
+    documented eVault resource.
+- aid: reggora:reggora-vendors-branches-api
+  name: Reggora Vendors & Branches API
+  tags:
+  - Vendors
+  - Branches
+  - AMC
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reggora.io/docs/
+  baseURL: https://api.reggora.io/lender
+  properties:
+  - url: https://api.reggora.io/docs/
+    type: Documentation
+  - url: https://api.reggora.io/
+    type: APIReference
+  description: Manage the appraisal vendors (appraisers and AMCs) a lender works with
+    and the lender's branch structure used to route and assign orders. Endpoints
+    modeled from Reggora's documented vendor and branch management resources.
+- aid: reggora:reggora-users-auth-api
+  name: Reggora Users & Authentication API
+  tags:
+  - Users
+  - Authentication
+  - JWT
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reggora.io/docs/
+  baseURL: https://api.reggora.io/lender
+  properties:
+  - url: https://api.reggora.io/docs/
+    type: Documentation
+  - url: https://api.reggora.io/
+    type: APIReference
+  description: Authenticate integrations with a JWT bearer token plus a per-integration
+    API key, and manage the lender users that act within the platform. Endpoints
+    modeled from Reggora's documented authentication and user management resources.
+- aid: reggora:reggora-webhooks-api
+  name: Reggora Webhook Events API
+  tags:
+  - Webhooks
+  - Events
+  - Callbacks
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.reggora.io/docs/
+  baseURL: https://api.reggora.io/lender
+  properties:
+  - url: https://api.reggora.io/docs/
+    type: Documentation
+  - url: https://api.reggora.io/
+    type: APIReference
+  description: Subscribe to server-to-server webhook callbacks that notify an
+    integration when an order is created or updated and when a loan is deleted.
+    Delivery is HTTP POST to a configured endpoint URL, not a WebSocket. Endpoints
+    modeled from Reggora's documented webhook events.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/reggora
+- type: Website
+  url: https://www.reggora.com
+- type: Documentation
+  url: https://api.reggora.io/docs/
+- type: Plans
+  url: plans/reggora-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/reggora-rate-limits.yml
+- type: FinOps
+  url: finops/reggora-finops.yml
+- type: Blog
+  url: https://www.reggora.com/blog
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

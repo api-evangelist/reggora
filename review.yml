@@ -1,0 +1,96 @@
+aid: reggora
+name: Reggora
+review:
+  question: Does Reggora expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Reggora's documented API surface (the
+    Lender API and Vendor API) is request/response REST over HTTPS. Reggora's
+    only asynchronous, server-initiated transport is outbound webhooks - HTTP
+    POST callbacks Reggora sends to a lender or vendor integration when an order
+    is created/updated or a loan is deleted. That is server-to-endpoint HTTP,
+    not a WebSocket or SSE stream on Reggora's own API, so there is no
+    server-push transport to model.
+findings:
+  summary: |
+    Reggora does not publish a documented public WebSocket API. Reggora is a
+    two-sided appraisal management platform for mortgage lenders and appraisal
+    vendors. It exposes a documented Lender API and Vendor API over HTTPS REST.
+    Requests authenticate with a JWT bearer token plus a per-integration API key
+    header. There are sandbox and production environments (lender base
+    https://api.reggora.io/lender/ and vendor base https://api.reggora.io/vendor/
+    in production; sandbox.reggora.io in sandbox). Asynchronous notifications are
+    delivered as outbound webhooks (HTTP POST) for order-created, order-updated,
+    and loan-deleted events - a one-way server-to-endpoint callback, not a
+    bidirectional or streaming WebSocket (ws:// or wss://). No WebSocket endpoint
+    is documented anywhere in Reggora's API reference as of the review date.
+  accessModel: |
+    Reggora's API is real and documented but partner/customer-facing rather than
+    open self-serve. The reference is published at api.reggora.io/docs (developer
+    portal developer.reggora.io redirects there), but credentials (the JWT and
+    per-integration API key) are provisioned to contracted lenders and vendors.
+    A public OpenAPI/JSON definition was not retrievable (openapi.json returns
+    403), and the reference is rendered by a single-page app, so exact endpoint
+    paths could not be scraped. The logical APIs and endpoints in this catalog
+    entry are therefore MODELED from Reggora's documented resource areas (loans,
+    orders, products, submissions, revisions, documents/eVault, vendors,
+    branches, users, webhooks) rather than copied verbatim.
+  endpointsModeled: true
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.reggora.io/lender
+      documented: true
+      note: Lender API. Vendor API base is https://api.reggora.io/vendor. Sandbox uses https://sandbox.reggora.io/lender and /vendor.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Outbound HTTP POST callbacks for order-created, order-updated, and loan-deleted events. Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Reggora's Lender or Vendor API reference as of the review date.
+  authentication: |
+    JWT bearer token plus a personal / per-integration API key header on every
+    request. Credentials are issued to contracted lender and vendor integrations.
+  documentedResources:
+    - Authentication and user management
+    - Loans
+    - Orders (appraisal orders and status)
+    - Products (appraisal products and fees)
+    - Submissions
+    - Revisions and document review
+    - Conversation and notes
+    - Documents / eVault
+    - Vendors and branch management
+    - Webhook events (order created, order updated, loan deleted)
+sources:
+  - url: https://api.reggora.io/
+    type: APIReference
+    note: Lender API reference landing; redirects to /docs/.
+  - url: https://api.reggora.io/docs/
+    type: Documentation
+    note: API reference overview - base URLs (sandbox/production, lender/vendor), JWT + API key auth, and the Lender/Vendor API section list.
+  - url: https://developer.reggora.io/
+    type: Documentation
+    note: Developer portal; redirects to api.reggora.io/docs.
+  - url: https://www.reggora.com/press/reggora-announces-appraisal-order-management-software-fully-integrates-into-custom-loan-origination-systems
+    type: PressRelease
+    note: Describes Reggora's open API letting lenders manage 100% of appraisal orders inside their own LOS.
+  - url: https://www.reggora.com/lenders
+    type: Website
+    note: Lender product overview - appraisal management, ordering, payments, review.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Reggora's own public API is
+    request/response REST (Lender API and Vendor API) with asynchronous
+    notifications delivered as outbound HTTP POST webhooks. No AsyncAPI document
+    was created because there is no server-push streaming transport (WebSocket or
+    SSE) on Reggora's own API to model. Logical APIs in apis.yml are modeled from
+    documented resource areas because exact endpoint paths are behind a partner
+    SPA reference and no public OpenAPI was retrievable.

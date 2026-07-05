@@ -1,0 +1,93 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Reggora
+providerId: reggora
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Appraisal Management
+- Mortgage
+- Lending
+- Real Estate
+- Plans
+description: >-
+  Reggora is sold as an appraisal management platform to mortgage lenders on a
+  contact-sales basis rather than with published, self-serve API pricing. The
+  Lender API and Vendor API are included capabilities of the platform, not
+  separately metered products with a public per-call rate. Reggora frames value
+  around cost-per-loan savings - it cites roughly $258 saved per loan from
+  automating appraisal order management (~$44/file) and quality control
+  (~$81/file) - and offers a free cost-per-loan consultation. Appraisal vendors
+  (appraisers and AMCs) receive orders and use the Vendor API at no charge to
+  them. Exact contract pricing is negotiated and not reconciled here.
+notes: >-
+  No public per-seat, per-order, or per-API-call price list is published. Amounts
+  below are directional (Reggora's own cited savings figures), not list prices.
+  Verify current terms with Reggora sales during reconciliation.
+sources:
+- https://www.reggora.com/lenders
+- https://www.reggora.com/press/mortgage-lenders-reduce-their-cost-per-loan-by-258-with-reggora-appraisal-automation
+- https://api.reggora.io/docs/
+plans:
+- id: reggora-lender-platform
+  name: Lender Platform (Contact Sales)
+  type: enterprise
+  description: >-
+    Full Reggora appraisal management platform for a mortgage lender, including
+    the Lender API, LOS integration, order management, appraisal payments,
+    document review, and vendor/AMC management. Priced per organization on a
+    contact-sales basis, typically justified against cost-per-loan savings.
+  entries:
+  - label: Platform Subscription
+    name: platform_subscription
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: Cited Savings Per Loan
+    name: savings_per_loan
+    type: usage
+    metric: loans
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$258 saved per loan (Reggora-cited, not a fee)
+    userMultiplied: false
+  elements:
+  - name: Lender API and LOS Integration
+  - name: Appraisal Order Management
+  - name: Appraisal Payments
+  - name: Document Review and Revisions
+  - name: Vendor and Branch Management
+  - name: Webhook Events
+- id: reggora-vendor
+  name: Vendor / AMC Access
+  type: free
+  description: >-
+    Appraisal vendors (appraisers and AMCs) connect to lenders, receive orders,
+    and use the Vendor API and eVault at no cost to the vendor.
+  entries:
+  - label: Vendor Access
+    name: vendor_access
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: free to vendors
+    userMultiplied: false
+  elements:
+  - name: Vendor API
+  - name: Order Management
+  - name: eVault
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

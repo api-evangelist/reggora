@@ -1,0 +1,60 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Reggora
+providerId: reggora
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Appraisal Management
+- Mortgage
+- Lending
+- Rate Limiting
+- Quotas
+description: >-
+  Reggora does not publish fixed numeric rate limits for its Lender API or
+  Vendor API in the public reference. Access is provisioned per contracted
+  integration (JWT bearer token plus a per-integration API key), and throughput
+  is governed by that integration agreement and Reggora's platform protections
+  rather than by a published per-minute request cap. Asynchronous notifications
+  are pushed as outbound HTTP POST webhooks (order created, order updated, loan
+  deleted); consuming integrations should return 2xx promptly and process
+  webhook payloads asynchronously.
+notes: >-
+  No numeric per-account or per-endpoint request limits are documented as of the
+  review date. Confirm any applicable throttling, burst, or concurrency limits
+  with Reggora during integration onboarding.
+sources:
+- https://api.reggora.io/docs/
+- https://api.reggora.io/
+responseCodes:
+  throttled: 429
+limits:
+- name: Lender API Requests
+  scope: integration
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the Lender API; governed per integration agreement.
+- name: Vendor API Requests
+  scope: integration
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the Vendor API.
+- name: Webhook Delivery
+  scope: integration
+  metric: events
+  limit: event-driven
+  notes: Outbound HTTP POST callbacks per subscribed event; not a client request quota.
+policies:
+- name: Authentication
+  description: Every request requires a valid JWT bearer token plus a per-integration API key; unauthorized requests are rejected.
+- name: Environment Separation
+  description: Sandbox (sandbox.reggora.io) and production (api.reggora.io) are separate; test against sandbox before production.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on any 429 or 5xx responses.
+- name: Webhook Acknowledgement
+  description: Return a 2xx quickly to acknowledge webhook receipt and process the payload asynchronously to avoid delivery retries.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
