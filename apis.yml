@@ -169,6 +169,10 @@ apis:
     Delivery is HTTP POST to a configured endpoint URL, not a WebSocket. Endpoints
     modeled from Reggora's documented webhook events.
 common:
+- type: TrustCenter
+  url: security/reggora-trust-center.yml
+- type: DomainSecurity
+  url: security/reggora-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/reggora
 - type: Website
