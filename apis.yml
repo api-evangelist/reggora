@@ -30,6 +30,15 @@ tags:
 - Appraisal Management
 - Mortgage
 - Lending
+- Real-Estate
+- Valuation
+- Loan Origination
+- LOS Integration
+- Fintech
+tags_raw:
+- Appraisal Management
+- Mortgage
+- Lending
 - Real Estate
 - Valuation
 - Loan Origination
@@ -60,6 +69,10 @@ apis:
 - aid: reggora:reggora-orders-api
   name: Reggora Orders (Appraisals) API
   tags:
+  - Order
+  - Appraisals
+  - Status
+  tags_raw:
   - Orders
   - Appraisals
   - Status
@@ -78,6 +91,10 @@ apis:
 - aid: reggora:reggora-products-api
   name: Reggora Products API
   tags:
+  - Product
+  - Appraisal Products
+  - Fees
+  tags_raw:
   - Products
   - Appraisal Products
   - Fees
@@ -148,6 +165,10 @@ apis:
 - aid: reggora:reggora-users-auth-api
   name: Reggora Users & Authentication API
   tags:
+  - User
+  - Authentication
+  - JWT
+  tags_raw:
   - Users
   - Authentication
   - JWT
@@ -165,6 +186,10 @@ apis:
 - aid: reggora:reggora-webhooks-api
   name: Reggora Webhook Events API
   tags:
+  - Webhook
+  - Event
+  - Callbacks
+  tags_raw:
   - Webhooks
   - Events
   - Callbacks
