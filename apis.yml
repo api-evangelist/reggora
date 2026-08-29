@@ -13,6 +13,17 @@ description: Reggora is a modern appraisal management platform that connects mor
   environments and webhook callbacks for loan and order events. Endpoint paths in
   this catalog are modeled from Reggora's documented resource areas; the full
   reference is partner-facing at api.reggora.io/docs.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: unknown
