@@ -41,7 +41,7 @@ tags:
 - Appraisal Management
 - Mortgage
 - Lending
-- Real-Estate
+- Real Estate
 - Valuation
 - Loan Origination
 - LOS Integration
@@ -55,6 +55,7 @@ tags_raw:
 - Loan Origination
 - LOS Integration
 - Fintech
+- Real-Estate
 created: '2026-07-04'
 modified: '2026-07-04'
 specificationVersion: '0.23'
