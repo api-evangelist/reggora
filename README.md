@@ -1,4 +1,4 @@
-# Reggora (reggora)
+# Reggora
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,91 +64,111 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Reggora is a modern appraisal management platform that connects mortgage lenders and appraisal vendors on a single, intelligent system. It automates the appraisal lifecycle - order placement, product selection, payment, scheduling, document submission, revision review, and delivery - and pushes results back into the lender's loan origination system (LOS). Reggora publishes a documented **Lender API** and **Vendor API** so lenders can manage 100% of their appraisal orders directly from their own LOS or proprietary tech stack.
+Reggora is a modern appraisal management platform that connects mortgage lenders and appraisal vendors on a single system, automating the appraisal lifecycle from order placement and product selection through payment, document submission, revision review, and delivery back into the loan origination system (LOS). Reggora exposes a documented Lender API and Vendor API so lenders can manage 100% of their appraisal orders directly from their own LOS or proprietary tech stack. All key platform functionality is available via secure REST endpoints (JWT bearer token plus a per-integration API key), with sandbox and production environments and webhook callbacks for loan and order events. Endpoint paths in this catalog are modeled from Reggora's documented resource areas; the full reference is partner-facing at api.reggora.io/docs.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/reggora/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/reggora/refs/heads/main/apis.yml)
+**Areas:** Appraisal Management · Mortgage · Lending · Real Estate · Valuation · Loan Origination · LOS Integration · Fintech
 
-## Access Model (Read This First)
+## Reggora on APIs.io
 
-Reggora's API is **real and documented, but partner/customer-facing** rather than open self-serve:
+Everything profiled for Reggora is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/reggora/](https://apis.io/providers/reggora/)** — or go straight to one of the APIs or properties below.
 
-- The reference is published at [https://api.reggora.io/docs/](https://api.reggora.io/docs/) (the developer portal at `developer.reggora.io` redirects there).
-- Requests authenticate with a **JWT bearer token plus a per-integration API key** header. Those credentials are provisioned to contracted lenders and vendors - there is no public self-service signup for keys.
-- There are **sandbox** and **production** environments:
-  - Lender (production): `https://api.reggora.io/lender/`
-  - Vendor (production): `https://api.reggora.io/vendor/`
-  - Sandbox: `https://sandbox.reggora.io/lender/` and `https://sandbox.reggora.io/vendor/`
-- A public OpenAPI/JSON definition is **not** available (the `openapi.json` path returns 403), and the reference is rendered by a single-page app, so exact endpoint paths could not be scraped verbatim.
+### APIs (8)
 
-Because of that, the logical APIs and endpoints in this catalog entry are **modeled** (`endpointsModeled: true`) from Reggora's documented resource areas - loans, orders, products, submissions, revisions, documents/eVault, vendors, branches, users, and webhooks - rather than copied path-for-path from a public spec. Treat the base URLs and auth model as confirmed and the individual endpoint paths as representative.
+- [Reggora Loans API](https://apis.io/apis/reggora/reggora-loans-api/) — Create and manage the loan records that appraisal orders are placed against - sync loan data from the LOS, retrieve loan detail, update loan fields, and…
+- [Reggora Orders (Appraisals) API](https://apis.io/apis/reggora/reggora-orders-api/) — Place appraisal orders against a loan, list and retrieve orders, track order status through the appraisal lifecycle, and manage order-level actions.…
+- [Reggora Products API](https://apis.io/apis/reggora/reggora-products-api/) — List the appraisal products (report types and associated fees) a lender has configured so an integration can present valid product options when placing an…
+- [Reggora Submissions & Revisions API](https://apis.io/apis/reggora/reggora-submissions-revisions-api/) — Retrieve appraisal report submissions on an order, request and track revisions, and drive the document review workflow between lender and vendor. Endpoints…
+- [Reggora Documents (eVault) API](https://apis.io/apis/reggora/reggora-documents-evault-api/) — Access the eVault to list, upload, and download appraisal documents and supporting files associated with an order. Endpoints modeled from Reggora's…
+- [Reggora Vendors & Branches API](https://apis.io/apis/reggora/reggora-vendors-branches-api/) — Manage the appraisal vendors (appraisers and AMCs) a lender works with and the lender's branch structure used to route and assign orders. Endpoints modeled…
+- [Reggora Users & Authentication API](https://apis.io/apis/reggora/reggora-users-auth-api/) — Authenticate integrations with a JWT bearer token plus a per-integration API key, and manage the lender users that act within the platform. Endpoints…
+- [Reggora Webhook Events API](https://apis.io/apis/reggora/reggora-webhooks-api/) — Subscribe to server-to-server webhook callbacks that notify an integration when an order is created or updated and when a loan is deleted. Delivery is HTTP…
 
-## Tags
+### Published properties
 
-- Appraisal Management
-- Mortgage
-- Lending
-- Real Estate
-- Valuation
-- Loan Origination
-- LOS Integration
-- Fintech
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Security (2)
 
-- **Created:** 2026-07-04
-- **Modified:** 2026-07-04
+Authentication, trust centre, and vulnerability disclosure.
 
-## APIs
+- [Reggora Domain Security](https://apis.io/security/reggora/reggora-domain-security/)
+- [Reggora Trust Center](https://apis.io/security/reggora/reggora-trust-center/)
 
-Base URL (Lender API, production): `https://api.reggora.io/lender`
+#### Plans and pricing (1)
 
-### Reggora Loans API
+Published plans, tiers and prices.
 
-Create and manage the loan records that appraisal orders are placed against - sync loan data from the LOS, retrieve loan detail, update fields, and receive a webhook when a loan is deleted.
+- [Reggora Plans Pricing](https://apis.io/plans/reggora/reggora-plans-pricing/)
 
-### Reggora Orders (Appraisals) API
+#### Rate limits (1)
 
-Place appraisal orders against a loan, list and retrieve orders, and track order status through the appraisal lifecycle. Order-created and order-updated events are delivered via webhooks.
+Published request limits.
 
-### Reggora Products API
+- [Reggora Rate Limits](https://apis.io/rate-limits/reggora/reggora-rate-limits/)
 
-List the appraisal products (report types and associated fees) a lender has configured, so an integration can present valid product options when placing an order.
+#### FinOps (1)
 
-### Reggora Submissions & Revisions API
+What the API costs to run, by operation.
 
-Retrieve appraisal report submissions on an order, request and track revisions, and drive the document review workflow between lender and vendor.
+- [Reggora Finops](https://apis.io/finops/reggora/reggora-finops/)
 
-### Reggora Documents (eVault) API
+## Where to find this API
 
-Access the eVault to list, upload, and download appraisal documents and supporting files associated with an order.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Reggora Vendors & Branches API
-
-Manage the appraisal vendors (appraisers and AMCs) a lender works with and the lender's branch structure used to route and assign orders.
-
-### Reggora Users & Authentication API
-
-Authenticate integrations with a JWT bearer token plus a per-integration API key, and manage the lender users that act within the platform.
-
-### Reggora Webhook Events API
-
-Subscribe to server-to-server webhook callbacks that fire when an order is created or updated and when a loan is deleted. Delivery is HTTP POST to a configured endpoint URL - **not** a WebSocket.
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/reggora)
 - [Website](https://www.reggora.com)
 - [Documentation](https://api.reggora.io/docs/)
-- [Plans](plans/reggora-plans-pricing.yml)
-- [Rate Limits](rate-limits/reggora-rate-limits.yml)
-- [Fin Ops](finops/reggora-finops.yml)
 - [Blog](https://www.reggora.com/blog)
 
-## Pricing
+## API Evangelist rating
 
-Reggora does not publish public per-seat or per-call API pricing. It is sold as a platform to lenders (and is free to appraisal vendors who receive orders) via a **contact-sales** model, typically framed around cost-per-loan savings - Reggora cites roughly **$258 saved per loan** from automating appraisal order management and quality control. See [plans/reggora-plans-pricing.yml](plans/reggora-plans-pricing.yml).
+**Kin Score 13.5** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 13.2 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/reggora/](https://apis.io/providers/reggora/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Reggora: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/reggora/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
